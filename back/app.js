@@ -15,14 +15,14 @@ app.use((req, res, next) => {
 });
 app.post('/login', (req, res) => {
   
-  const { name, email } = req.body;
-  // console.log(name, email);
+  const { email, password } = req.body;
+  // console.log(email, password);
    try{
-    if (!name || !email) {
-        return res.status(400).json({ message: 'Name and email are required' });
+    if (!email || !password) {
+        return res.status(400).json({ message: 'email and password are required' });
         }
     else {
-      connection.query('SELECT * FROM users WHERE name = ? AND email = ?',[name,email], function (error, results) {
+      connection.query('SELECT * FROM users WHERE email = ? AND password = ?',[email,password], function (error, results) {
         if (error) {
           console.error('Error executing query:', error);
           return res.status(500).json({ message: 'Internal server error' });
@@ -30,7 +30,7 @@ app.post('/login', (req, res) => {
         if (results.length > 0) {
           return res.status(200).json({ message: 'Login successful!' });
         } else {
-          return res.status(401).json({ message: 'Invalid name or email' });
+          return res.status(401).json({ message: 'Invalid email or password' });
         }
       });
     }
@@ -82,3 +82,15 @@ catch(error){
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+
+app.get('/characters', (req, res) => { 
+  fetch('https://dragonball-api.com/api/characters')
+    .then(response => response.json())
+    .then(data => {
+      return res.json(data);
+    })
+    .catch(error => {
+      console.error('Error fetching characters:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+})

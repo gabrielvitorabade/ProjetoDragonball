@@ -1,13 +1,13 @@
 
 function fazerLogin(){
-    const name = document.querySelector('#username').value;
     const email = document.querySelector('#email').value;
-    // const data = { name, email }; // Cria um objeto com os dados do formulário
+    const password = document.querySelector('#password').value;
+    // const data = { email, password }; // Cria um objeto com os dados do formulário
     
     fetch('http://localhost:3000/login',{
         method: 'POST', // Define o método HTTP como POST
         mode: 'cors',
-        body: JSON.stringify({ name, email }), // Converte o objeto em uma string JSON),
+        body: JSON.stringify({ email, password }), // Converte o objeto em uma string JSON),
         headers: {
             'Content-Type': 'application/json', // Define o tipo de conteúdo como JSON
         },

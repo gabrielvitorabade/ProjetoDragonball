@@ -14,6 +14,7 @@ function doRegister() {
     .then(async (response) => {
       let responseJSON = await response.json();
       if (response.ok) {
+        alert(responseJSON.message);
         window.location.href = 'login.html';
       } else {
         alert(responseJSON.message); // Exibe a mensagem de erro retornada pelo servidor
