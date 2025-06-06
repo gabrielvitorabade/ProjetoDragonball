@@ -4,6 +4,8 @@ fetch('http://localhost:3000/characters',{
     headers:{
         'content-type':'application/json',
     }
+    
+    
 })
     .then(async(response)=>{
         const responseJS = await response.json()
@@ -11,9 +13,16 @@ fetch('http://localhost:3000/characters',{
             responseJS.items.forEach((character)=> {
                 document.querySelector('#characters').innerHTML += `
                 <div class="card">
-                    <img src="${character.image}" alt="image of ${character.name}" >
+                    <div class="card-img">
+                        <img src="${character.image}" alt="image of ${character.name}" >
+                    </div>
+                    <div class="card-info">
                     <h2>${character.name}</h2>
-                    
+                        <div>
+                            <P>Race : ${character.race}
+                            <p>kI : ${character.ki}</p>
+                        </div>
+                    <div/>
                 </div>
                 `
             }      
