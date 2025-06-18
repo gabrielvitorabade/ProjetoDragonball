@@ -58,7 +58,7 @@ body{
     transition: 0.6s ;
 }
 .card img:hover{
-    transform:scale(1.25);
+    transform:scale(1.25)
 }
 .card-info{
     display:flex;
@@ -72,6 +72,10 @@ body{
    border-radius: 0em 0em 0.4em 0.4em;
 
 }
+.card-info_data{
+    padding-top: 0%;
+    color: yellow;
+}
 .card-info h2{
     font-size: 1.5em;
     margin: 10px 0;
@@ -79,7 +83,7 @@ body{
 }
 .card-img{
     display: flex;
-    background-image:linear-gradient(90deg,rgb(143, 143, 143), rgb(228, 228, 228),rgb(143, 143, 143) ) ;
+    background-image:linear-gradient(90deg,rgb(216, 216, 216), rgb(255, 255, 255),rgb(216, 216, 216) ) ;
     width: 100% ;
     height: 60%;
     justify-content: center;

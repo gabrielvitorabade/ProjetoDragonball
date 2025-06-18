@@ -1,4 +1,4 @@
-// let charactersList = document.querySelector('#characters')
+// função responsavel por buscar os personagens na API e exibir na tela
 fetch('http://localhost:3000/characters',{
     method:'Get',
     headers:{
@@ -19,8 +19,10 @@ fetch('http://localhost:3000/characters',{
                     <div class="card-info">
                     <h2>${character.name}</h2>
                         <div>
-                            <P>Race : ${character.race} </P> <br>
-                            <p>kI : ${character.ki}</p>
+                        <P>Race :  </P>
+                        <div class="card-info_data">${character.race}</div> <br>
+                        <p>kI : </p> 
+                        <div class="card-info_data">${character.ki}</div>
                         </div>
                     <div/>
                 </div>
@@ -33,3 +35,7 @@ fetch('http://localhost:3000/characters',{
       .catch((error) =>{
         console.error('Error:', error)
       })
+
+function searchCharacter(){
+    
+}
