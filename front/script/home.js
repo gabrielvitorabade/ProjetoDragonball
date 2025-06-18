@@ -19,7 +19,7 @@ fetch('http://localhost:3000/characters',{
                     <div class="card-info">
                     <h2>${character.name}</h2>
                         <div>
-                            <P>Race : ${character.race}
+                            <P>Race : ${character.race} </P> <br>
                             <p>kI : ${character.ki}</p>
                         </div>
                     <div/>
