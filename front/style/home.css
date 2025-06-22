@@ -26,6 +26,9 @@ body{
     margin: 1em 0.5em;
     text-decoration: none;
 }
+#navbar a:hover{
+    color: yellow;
+}
 #characters{
     display: flex;
     flex-direction: row;

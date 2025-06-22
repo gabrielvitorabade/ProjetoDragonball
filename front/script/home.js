@@ -36,6 +36,42 @@ fetch('http://localhost:3000/characters',{
         console.error('Error:', error)
       })
 
-function searchCharacter(){
-    
+function searchCharacters(){
+
+    const searchInput = document.querySelector('#searchInput').value.toLowerCase();
+    fetch(`http://localhost:3000/characters`, 
+        {
+        method: 'get',
+        headers:{
+            'content-type': 'application/json'
+        }
+    })
+    .then(async(res)=>{
+        responseJS = await res.json()
+        const characters = responseJS.items;
+        if(res.ok){ 
+            var character = characters.filter( character => character.name.toLowerCase().includes(searchInput))
+        
+        }
+        document.querySelector('#characters').innerHTML = 
+                `
+                <div class="card">
+                    <div class="card-img">
+                        <img src="${character.image}" alt="image of ${character.name}" >
+                    </div>
+                    <div class="card-info">
+                    <h2>${character.name}</h2>
+                        <div>
+                        <P>Race :  </P>
+                        <div class="card-info_data">${character.race}</div> <br>
+                        <p>kI : </p> 
+                        <div class="card-info_data">${character.ki}</div>
+                        </div>
+                    <div/>
+                </div>
+                `
+            console.log(character)
+    })
 }
+
+                
