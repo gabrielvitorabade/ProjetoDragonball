@@ -84,7 +84,7 @@ app.listen(3000, () => {
 });
 
 app.get('/characters', (req, res) => {
-  fetch('https://dragonball-api.com/api/characters?page=1&limit=5')
+  fetch('https://dragonball-api.com/api/characters')
     .then(response => response.json())
     .then(data => {
       return res.json(data);

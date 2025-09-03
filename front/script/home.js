@@ -1,58 +1,65 @@
-// função responsavel por buscar os personagens na API e exibir na tela
-var links={}
-fetch('http://localhost:3000/characters',{
-    method:'get',
-    headers:{
-        'content-type':'application/json',
-    },
-})
-    .then(async(response)=>{
-        const responseJS = await response.json()
-        if(response.ok){
-        links = responseJS.links
-        }})
 
-    console.log(links)
-function getPage(tipo)
-{
-fetch('http://localhost:3000/characters',{
-    method:'get',
-    headers:{
-        'content-type':'application/json',
-    },
-})
+
+// função responsavel por buscar os personagens na API e exibir na tela
+let url = 'http://localhost:3000/characters'
+const getPage = (pageUrl = url) =>{
+    fetch(pageUrl,{
+        method:'get',
+        headers:{
+            'content-type':'application/json',
+        },
+    })
     .then(async(response)=>{
         const responseJS = await response.json()
-        if(response.ok){      
+        const links = responseJS.links
+        
+        if(response.ok){   
+            const container = document.querySelector('#characters');
+            container.innerHTML='';
+            
             responseJS.items.forEach((character)=> {
-                document.querySelector('#characters').innerHTML += `
+                container.innerHTML += `
                 <div class="card">
-                    <div class="card-img">
-                        <img src="${character.image}" alt="image of ${character.name}" >
-                    </div>
-                    <div class="card-info">
-                    <h2>${character.name}</h2>
-                        <div>
-                        <P>Race :  </P>
-                        <div class="card-info_data">${character.race}</div> <br>
-                        <p>Base kI : </p> 
-                        <div class="card-info_data">${character.ki}</div>
-                        </div>
-                    <div/>
+                <div class="card-img">
+                <img src="${character.image}" alt="image of ${character.name}" >
                 </div>
-                `
-            }      
-        )
-    }else{
+                <div class="card-info">
+                <h2>${character.name}</h2>
+                <div>
+                <P>Race :  </P>
+                <div class="card-info_data">${character.race}</div> <br>
+                <p>Base kI : </p> 
+                <div class="card-info_data">${character.ki}</div>
+                </div>
+                <div/>
+                </div>`;   
+            });
+            renderPagination(links)
+        }else{
             charactersList.innerHTML = `<p>${responseJS.message}</p>`
         } 
     }) 
-      .catch((error) =>{
+    .catch((error) =>{
         console.error('Error:', error)
-      })
-}
-getPage()
-
+    })}
+    
+    function renderPagination(links) {
+        const pagination = document.querySelector('#pagination');
+        pagination.innerHTML = '';
+        
+        for (const [key, link] of Object.entries(links)) {
+            if (link) {
+                const button = document.createElement('button');
+                button.textContent = key.toUpperCase();
+                button.onclick = () => getPage(link);
+                pagination.appendChild(button);
+            }
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      getPage(); // Carrega a primeira página
+    });
 function searchCharacters(){
 
     const searchInput = document.querySelector('#searchInput').value.toLowerCase();
@@ -93,6 +100,5 @@ function searchCharacters(){
              console.log(character[0].name,race)
     })
 }
-
 
                 

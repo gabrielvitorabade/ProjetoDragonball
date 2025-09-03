@@ -3,19 +3,32 @@
   font-weight: 400;
   font-style: normal;
   color: whitesmoke;
-  margin:0em;
+  margin:0;
 }
 body{
+    display: flex;
+    justify-content:center ;
+    flex-direction: column;
     background-color: #272B33;
-    padding: 0em;
 }
-
+#c-box{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    max-width: 80em;
+}
 #header{
     display: flex; 
     flex-direction: column;
     align-items: center;    
     background-image:linear-gradient(to bottom, #3b3b3b,gray ) ;
     padding: 1em 0em;
+}
+main{
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 #navbar{
@@ -29,10 +42,19 @@ a{
 a:hover{
     color: yellow;
 }
+button{
+    margin: 1em 0.5em;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+button:hover{
+    color: yellow;}
+
 #characters{
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    box-sizing: border-box;
     justify-content: center;
     margin-top: 20px;
 }
@@ -41,7 +63,7 @@ a:hover{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 10px;
+    margin: 15px;
     padding: 0px;
     border-radius: 0.4em;
     width: 15em;
